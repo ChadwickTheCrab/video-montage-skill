@@ -125,7 +125,7 @@ def _build_ffmpeg_complex_filter(spec: RenderSpec) -> str:
     # Add music mix at the end
     music_idx = len(spec.clips)
     filter_parts.append(
-        f"[{current_a}][{music_idx}:a]amix=inputs=2:duration=longest:weights=1 {spec.music_volume}[aout]"
+        f"[{current_a}][{music_idx}:a]amix=inputs=2:duration=first:weights=1 {spec.music_volume}[aout]"
     )
     
     return "".join(filter_parts)
