@@ -305,7 +305,7 @@ def render_from_timeline(
         music_path=music_path,
         output_path=output_path,
         transition_duration=0.5,  # 0.5s crossfade
-        music_volume=0.3,  # 30% music volume
+        music_volume=0.6,  # 60% music volume
     )
     
     if with_transitions and len(spec.clips) > 1:
