@@ -1,0 +1,17 @@
+# Video Montage Skill - Requirements
+# For Python 3.10+
+
+# Core dependencies (stdlib only for MVP)
+# No external packages required for Phase 1
+
+# Optional: For enhanced features (Phase 2)
+# opencv-python>=4.8.0  # Face detection, blur scoring
+# numpy>=1.24.0         # Array operations for image processing
+# librosa>=0.10.0       # Beat detection (if not using music API BPM)
+# dropbox>=11.0.0       # Dropbox API integration
+# requests>=2.31.0      # HTTP client for webhooks
+
+# Development dependencies
+# pytest>=7.4.0         # Testing
+# black>=23.0.0         # Code formatting
+# mypy>=1.5.0           # Type checking

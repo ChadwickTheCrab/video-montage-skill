@@ -1,0 +1,194 @@
+{
+  "library_version": "1.0.0",
+  "source": "Epidemic Sound / Artlist (Phase 1 static library)",
+  "license": "Royalty-free for commercial use",
+  "tracks": [
+    {
+      "id": "upbeat-pop-01",
+      "title": "Sunny Days",
+      "artist": "Sample Artist A",
+      "bpm": 128,
+      "duration_sec": 180,
+      "duration_display": "3:00",
+      "genre": "Pop",
+      "mood": "Upbeat, Happy",
+      "energy": "high",
+      "file": "music/sunny-days-128bpm.wav",
+      "tags": ["upbeat", "happy", "montage", "travel", "pop"]
+    },
+    {
+      "id": "electronic-01",
+      "title": "Night Drive",
+      "artist": "Sample Artist B",
+      "bpm": 120,
+      "duration_sec": 240,
+      "duration_display": "4:00",
+      "genre": "Electronic",
+      "mood": "Energetic, Driving",
+      "energy": "high",
+      "file": "music/night-drive-120bpm.wav",
+      "tags": ["electronic", "driving", "night", "high-energy"]
+    },
+    {
+      "id": "indie-folk-01",
+      "title": "Golden Hour",
+      "artist": "Sample Artist C",
+      "bpm": 90,
+      "duration_sec": 210,
+      "duration_display": "3:30",
+      "genre": "Indie Folk",
+      "mood": "Warm, Nostalgic",
+      "energy": "medium",
+      "file": "music/golden-hour-90bpm.wav",
+      "tags": ["chill", "nostalgic", "warm", "indie", "acoustic"]
+    },
+    {
+      "id": "hiphop-01",
+      "title": "City Lights",
+      "artist": "Sample Artist D",
+      "bpm": 95,
+      "duration_sec": 195,
+      "duration_display": "3:15",
+      "genre": "Hip Hop",
+      "mood": "Chill, Confident",
+      "energy": "medium",
+      "file": "music/city-lights-95bpm.wav",
+      "tags": ["hiphop", "urban", "chill", "cool"]
+    },
+    {
+      "id": "corporate-01",
+      "title": "Success Story",
+      "artist": "Sample Artist E",
+      "bpm": 110,
+      "duration_sec": 150,
+      "duration_display": "2:30",
+      "genre": "Corporate",
+      "mood": "Motivational, Professional",
+      "energy": "medium-high",
+      "file": "music/success-story-110bpm.wav",
+      "tags": ["corporate", "motivational", "business", "professional"]
+    },
+    {
+      "id": "rock-01",
+      "title": "Breaking Free",
+      "artist": "Sample Artist F",
+      "bpm": 140,
+      "duration_sec": 210,
+      "duration_display": "3:30",
+      "genre": "Rock",
+      "mood": "Powerful, Exciting",
+      "energy": "high",
+      "file": "music/breaking-free-140bpm.wav",
+      "tags": ["rock", "powerful", "exciting", "high-energy"]
+    },
+    {
+      "id": "lofi-01",
+      "title": "Lazy Afternoon",
+      "artist": "Sample Artist G",
+      "bpm": 70,
+      "duration_sec": 300,
+      "duration_display": "5:00",
+      "genre": "Lo-Fi",
+      "mood": "Relaxed, Chill",
+      "energy": "low",
+      "file": "music/lazy-afternoon-70bpm.wav",
+      "tags": ["lofi", "chill", "relax", "study", "calm"]
+    },
+    {
+      "id": "latin-01",
+      "title": "Summer Heat",
+      "artist": "Sample Artist H",
+      "bpm": 100,
+      "duration_sec": 198,
+      "duration_display": "3:18",
+      "genre": "Latin",
+      "mood": "Fun, Energetic",
+      "energy": "medium-high",
+      "file": "music/summer-heat-100bpm.wav",
+      "tags": ["latin", "fun", "summer", "dance"]
+    },
+    {
+      "id": "ambient-01",
+      "title": "Floating",
+      "artist": "Sample Artist I",
+      "bpm": 60,
+      "duration_sec": 360,
+      "duration_display": "6:00",
+      "genre": "Ambient",
+      "mood": "Dreamy, Ethereal",
+      "energy": "low",
+      "file": "music/floating-60bpm.wav",
+      "tags": ["ambient", "dreamy", "ethereal", "slow"]
+    },
+    {
+      "id": "funk-01",
+      "title": "Groove Machine",
+      "artist": "Sample Artist J",
+      "bpm": 108,
+      "duration_sec": 225,
+      "duration_display": "3:45",
+      "genre": "Funk",
+      "mood": "Groovy, Fun",
+      "energy": "medium-high",
+      "file": "music/groove-machine-108bpm.wav",
+      "tags": ["funk", "groovy", "fun", "dance"]
+    },
+    {
+      "id": "trap-01",
+      "title": "Hustle Mode",
+      "artist": "Sample Artist K",
+      "bpm": 150,
+      "duration_sec": 180,
+      "duration_display": "3:00",
+      "genre": "Trap",
+      "mood": "Intense, Focused",
+      "energy": "high",
+      "file": "music/hustle-mode-150bpm.wav",
+      "tags": ["trap", "intense", "focused", "hype"]
+    },
+    {
+      "id": "jazz-01",
+      "title": "Late Night Jazz",
+      "artist": "Sample Artist L",
+      "bpm": 85,
+      "duration_sec": 270,
+      "duration_display": "4:30",
+      "genre": "Jazz",
+      "mood": "Sophisticated, Smooth",
+      "energy": "low-medium",
+      "file": "music/late-night-jazz-85bpm.wav",
+      "tags": ["jazz", "sophisticated", "smooth", "classy"]
+    }
+  ],
+  "selection_rules": {
+    "description": "How to select the right track for a project",
+    "rules": [
+      {
+        "condition": "clip_count >= 20 OR clip_total_duration_sec >= 240",
+        "preference": "medium BPM (90-120), high energy",
+        "reasoning": "Many clips need faster cuts to maintain engagement"
+      },
+      {
+        "condition": "clip_count <= 10 AND clip_total_duration_sec <= 90",
+        "preference": "slow-medium BPM (60-95), medium energy",
+        "reasoning": "Fewer clips, slower pace, more deliberate cuts"
+      },
+      {
+        "condition": "has_slow_motion_clips",
+        "preference": "tracks with strong beat markers (128+ BPM recommended)",
+        "reasoning": "Slow-mo looks best with strong rhythmic cuts"
+      },
+      {
+        "condition": "default",
+        "preference": "high BPM (120-140), high energy",
+        "reasoning": "Safe default for dynamic montages"
+      }
+    ]
+  },
+  "beat_calculation": {
+    "description": "How to calculate cut timing from BPM",
+    "formula": "beat_duration_sec = 60 / BPM",
+    "example": "128 BPM = 60/128 = 0.46875 seconds per beat",
+    "cut_placement": "Place cuts on downbeats (every N-th beat based on desired cut density)"
+  }
+}
