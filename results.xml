@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="2" time="0.124" timestamp="2026-02-12T20:18:38.290164-05:00" hostname="chadbook"><testcase classname="" name="tests.test_music_selector" time="0.000"><error message="collection failure">ImportError while importing test module '/home/chad/.openclaw/workspace/video-montage-skill/tests/test_music_selector.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_music_selector.py:2: in &lt;module&gt;
+    from video_montage_skill.music_selector import MusicSelector
+E   ModuleNotFoundError: No module named 'video_montage_skill'</error><error message="collection failure">ImportError while importing test module '/home/chad/.openclaw/workspace/video-montage-skill/tests/test_music_selector.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.14/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/test_music_selector.py:2: in &lt;module&gt;
+    from video_montage_skill.music_selector import MusicSelector
+E   ModuleNotFoundError: No module named 'video_montage_skill'</error></testcase></testsuite></testsuites>

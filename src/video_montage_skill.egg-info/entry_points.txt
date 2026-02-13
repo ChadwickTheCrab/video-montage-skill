@@ -1,0 +1,2 @@
+[console_scripts]
+video-montage = video_montage_skill.cli:main

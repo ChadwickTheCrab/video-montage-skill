@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional
 
-from .music_selector import MusicLibrary, Track, ProjectProfile, calculate_cut_timing
+from music_selector import MusicLibrary, Track, ProjectProfile, calculate_cut_timing
 
 
 @dataclass

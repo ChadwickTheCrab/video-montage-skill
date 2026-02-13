@@ -19,11 +19,16 @@ class Track:
     artist: str
     bpm: int
     duration_sec: int
-    genre: str
-    mood: str
-    energy: str
-    file: str
-    tags: list
+    duration_display: str = ""  # Human-readable duration like "3:00"
+    genre: str = ""
+    mood: str = ""
+    energy: str = "medium"
+    file: str = ""
+    tags: list = None
+    
+    def __post_init__(self):
+        if self.tags is None:
+            self.tags = []
     
     @property
     def beat_duration(self) -> float:
