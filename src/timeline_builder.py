@@ -92,7 +92,7 @@ class TimelineBuilder:
             TimelineSpec ready for FCPXML generation
         """
         # Calculate total content duration
-        total_content_duration = sum(c.duration for c in analyzed_clips)
+        total_content_duration = sum(c.metadata.duration_sec for c in analyzed_clips)
         
         # Determine target duration
         if target_duration is None:
@@ -164,7 +164,7 @@ class TimelineBuilder:
             )
             
             # Don't exceed source clip duration
-            segment_duration = min(segment_duration, clip.duration)
+            segment_duration = min(segment_duration, clip.metadata.duration_sec)
             
             # Pick best segment from source (highest quality middle portion)
             source_start = self._select_best_segment_start(clip, segment_duration)
@@ -174,13 +174,13 @@ class TimelineBuilder:
             transition_out = "cross-dissolve" if i < len(clips) - 1 else None
             
             segment = ClipSegment(
-                source_path=clip.file_path,
+                source_path=clip.path,
                 source_start=source_start,
                 source_duration=segment_duration,
                 timeline_start=cut_time,
                 transition_in=transition_in,
                 transition_out=transition_out,
-                notes=f"Quality score: {clip.quality_score:.2f}"
+                notes=f"Quality score: {clip.blur_score:.2f}"
             )
             
             timeline.add_clip(segment)
@@ -204,24 +204,24 @@ class TimelineBuilder:
         Returns:
             Start time in source clip (seconds)
         """
-        if clip.duration <= target_duration + 2:
+        if clip.metadata.duration_sec <= target_duration + 2:
             # Clip is short, use from beginning
             return 0.0
         
         # Default: start 20% into the clip (skip intro shake)
-        intro_skip = clip.duration * 0.2
+        intro_skip = clip.metadata.duration_sec * 0.2
         
         # Use scene changes if available
-        if hasattr(clip, 'scene_changes') and clip.scene_changes:
+        if hasattr(clip, 'scene_cuts') and clip.scene_cuts:
             # Find a scene change that's at least intro_skip in
-            for sc_time in clip.scene_changes:
+            for sc_time in clip.scene_cuts:
                 if sc_time >= intro_skip:
                     # Check if we have enough duration after this point
-                    if sc_time + target_duration <= clip.duration * 0.9:
+                    if sc_time + target_duration <= clip.metadata.duration_sec * 0.9:
                         return sc_time
         
         # Fallback: middle of clip
-        mid_point = clip.duration / 2
+        mid_point = clip.metadata.duration_sec / 2
         if mid_point - (target_duration / 2) >= 0:
             return max(intro_skip, mid_point - (target_duration / 2))
         
@@ -263,16 +263,27 @@ if __name__ == "__main__":
     from dataclasses import dataclass
     
     @dataclass
+    class MockMetadata:
+        duration_sec: float
+        width: int = 1920
+        height: int = 1080
+        fps: float = 30.0
+    
+    @dataclass
     class MockClip:
         file_path: Path
-        duration: float
-        quality_score: float
-        scene_changes: list = None
+        metadata: 'MockMetadata'
+        blur_score: float
+        scene_cuts: list = None
+        
+        def __post_init__(self):
+            if self.scene_cuts is None:
+                self.scene_cuts = []
     
     clips = [
-        MockClip(Path("/tmp/clip1.mp4"), 15.0, 0.8, [2.0, 5.0, 10.0]),
-        MockClip(Path("/tmp/clip2.mp4"), 20.0, 0.7, [3.0, 8.0]),
-        MockClip(Path("/tmp/clip3.mp4"), 12.0, 0.9, [1.0, 6.0]),
+        MockClip(Path("/tmp/clip1.mp4"), MockMetadata(15.0), 0.8, [2.0, 5.0, 10.0]),
+        MockClip(Path("/tmp/clip2.mp4"), MockMetadata(20.0), 0.7, [3.0, 8.0]),
+        MockClip(Path("/tmp/clip3.mp4"), MockMetadata(12.0), 0.9, [1.0, 6.0]),
     ]
     
     builder = TimelineBuilder()

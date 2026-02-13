@@ -64,7 +64,7 @@ def main():
         try:
             result = analyze_clip(Path(clip_path))
             analyzed.append(result)
-            print(f"✓ ({result.duration:.1f}s, quality: {result.quality_score:.2f})")
+            print(f"✓ ({result.metadata.duration_sec:.1f}s, quality: {result.blur_score:.2f})")
         except Exception as e:
             print(f"✗ {e}")
             continue
@@ -101,7 +101,7 @@ def main():
     
     write_fcpxml(
         out_path=fcpxml_path,
-        timeline_clips=fcpxml_clips,
+        clips=fcpxml_clips,
         project_name="Montage",
     )
     print(f"   ✓ {fcpxml_path}")
