@@ -207,19 +207,20 @@ def calculate_cut_timing(
     if clip_count == 1:
         return [first_cut]
     
-    # Space remaining cuts evenly
-    remaining_duration = total_duration - first_cut
+    # Space remaining cuts evenly, leaving room for the last clip
+    MIN_LAST_CLIP_DURATION = 4.0  # seconds — ensure the final clip has room
+    usable_duration = total_duration - first_cut - MIN_LAST_CLIP_DURATION
     cut_times = [first_cut]
     
     for i in range(1, clip_count):
         # Snap to nearest beat subdivision
-        ideal_time = first_cut + (i * (remaining_duration / (clip_count - 1)))
+        ideal_time = first_cut + (i * (usable_duration / (clip_count - 1)))
         beat_number = ideal_time / cut_interval
         snapped_beat = round(beat_number)
         snapped_time = snapped_beat * cut_interval
         
-        # Ensure we don't exceed track duration
-        if snapped_time < track.duration_sec - 0.5:
+        # Ensure we don't exceed track duration and leave room for last clip
+        if snapped_time < track.duration_sec - 0.5 and snapped_time < total_duration - MIN_LAST_CLIP_DURATION:
             cut_times.append(snapped_time)
     
     return cut_times

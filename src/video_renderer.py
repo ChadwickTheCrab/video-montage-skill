@@ -102,12 +102,15 @@ def _build_ffmpeg_complex_filter(spec: RenderSpec) -> str:
         next_v = f"v{i}"
         next_a = f"a{i}"
         output_v = f"v_blend{i}" if i < len(spec.clips) - 1 else "vout"
-        output_a = f"a_blend{i}" if i < len(spec.clips) - 1 else "aout"
+        output_a = f"a_blend{i}" if i < len(spec.clips) - 1 else "a_pre_music"
         
-        # Calculate offset (when the transition starts)
-        # It's the duration of all previous clips minus overlap
+        # Calculate offset (when the transition starts in the accumulated output)
+        # After N-1 prior xfades, accumulated duration is sum of clip durations
+        # minus (N-1) * transition_duration. The next xfade starts at
+        # accumulated_duration - transition_duration.
         prev_duration = sum(spec.clips[j].source_duration for j in range(i))
-        offset = prev_duration - (spec.transition_duration if i > 0 else 0)
+        prior_transitions = (i - 1) * spec.transition_duration  # overlap from earlier xfades
+        offset = prev_duration - prior_transitions - spec.transition_duration
         
         # Xfade for video
         filter_parts.append(

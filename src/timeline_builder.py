@@ -56,8 +56,8 @@ class TimelineBuilder:
     """Builds video timelines from analyzed clips and music."""
     
     DEFAULT_TRANSITION_DURATION = 0.5  # seconds
-    MIN_CLIP_DURATION = 1.0  # seconds
-    MAX_CLIP_DURATION = 8.0  # seconds (for montage pacing)
+    MIN_CLIP_DURATION = 2.0  # seconds
+    MAX_CLIP_DURATION = 30.0  # seconds (raised — let timeline fill naturally)
     
     def __init__(
         self,
@@ -152,10 +152,6 @@ class TimelineBuilder:
             
             # Clip duration with transition overlap
             segment_duration = available_duration
-            if i > 0:  # Not first clip - overlap with previous transition
-                segment_duration += self.transition_duration / 2
-            if i < len(clips) - 1:  # Not last clip - overlap with next
-                segment_duration -= self.transition_duration / 2
             
             # Clamp to reasonable range
             segment_duration = max(
